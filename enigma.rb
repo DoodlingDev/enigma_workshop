@@ -6,10 +6,16 @@ class Enigma
   def cypher(character)
     character_index = ALPHABET.index(character)
 
-    shifted_index = ROTOR_I.at(character_index)
-    shifted_index = ROTOR_II.at(shifted_index)
-    shifted_index = ROTOR_III.at(shifted_index)
+    shifted_index = translate(ROTOR_I, character_index)
+    shifted_index = translate(ROTOR_II, shifted_index)
+    shifted_index = translate(ROTOR_III, shifted_index)
 
     ALPHABET.at(shifted_index)
+  end
+
+  private
+
+  def translate(rotor, index)
+    rotor.at(index)
   end
 end
