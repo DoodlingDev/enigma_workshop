@@ -22,9 +22,9 @@ class Enigma::Test < Minitest::Test
     refute_equal first_encyphered_character, second_encyphered_character
   end
 
-  # def test_encyphers_a_phrase
-  #   enigma = Enigma.new
-  #   encyphered_phrase = enigma.cypher("HELLOWORLD")
-  #   assert_equal "IPNNYTYENR", encyphered_phrase
-  # end
+  def test_encyphers_a_phrase
+    enigma = Enigma.new
+    encyphered_phrase = enigma.cypher("HELLOWORLD")
+    assert_equal "IPNNYTYENR", encyphered_phrase
+  end
 end

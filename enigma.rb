@@ -12,13 +12,19 @@ class Enigma
     @rotor_three = Rotor.new(ROTOR_III)
   end
 
-  def cypher(character)
-    character_index = @keyboard.convert(character)
+  def cypher(message)
+    message_characters = message.chars
 
-    shifted_index = @rotor_one.translate(character_index)
-    shifted_index = @rotor_two.translate(shifted_index)
-    shifted_index = @rotor_three.translate(shifted_index)
+    encyphered_characters = message_characters.map do |character|
+      character_index = @keyboard.convert(character)
 
-    @lampboard.convert(shifted_index)
+      shifted_index = @rotor_one.translate(character_index)
+      shifted_index = @rotor_two.translate(shifted_index)
+      shifted_index = @rotor_three.translate(shifted_index)
+
+      @lampboard.convert(shifted_index)
+    end
+
+    encyphered_characters.join
   end
 end
