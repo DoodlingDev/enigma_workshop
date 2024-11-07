@@ -1,24 +1,27 @@
-require_relative "rotor"
-require_relative "wiring"
-
 class Spindle
-  def initialize
-    @rotor_one = Rotor.new(ROTOR_I)
-    @rotor_two = Rotor.new(ROTOR_II)
-    @rotor_three = Rotor.new(ROTOR_III)
+  def initialize(*rotors)
+    @rotors = rotors
+  end
+
+  def call(index)
+    transformed_index = transform(index)
+    advance_step
+    transformed_index
   end
 
   def transform(index)
-    shifted_index = @rotor_one.translate(index)
-    shifted_index = @rotor_two.translate(shifted_index)
-    shifted_index = @rotor_three.translate(shifted_index)
+    @rotors.reduce(index) do |previous_index, rotor|
+      rotor.translate(previous_index)
+    end
+  end
 
-    if @rotor_one.advance!
-      if @rotor_two.advance!
-        @rotor_three.advance!
+  def advance_step
+    @rotors.reduce(true) do |step_signal, rotor|
+      if step_signal
+        rotor.advance!
+      else
+        false
       end
     end
-
-    shifted_index
   end
 end
