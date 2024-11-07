@@ -5,15 +5,16 @@ class Rotor
   end
 
   def translate(index)
-    cyphertext = step_adjusted_key.at(index)
-    advance!
-    cyphertext
+    step_adjusted_key.at(index)
   end
 
   def advance!
     @position += 1
     if @position >= @key.length
       @position = 0
+      true
+    else
+      false
     end
   end
 

@@ -25,6 +25,6 @@ class Enigma::Test < Minitest::Test
   def test_encyphers_a_phrase
     enigma = Enigma.new
     encyphered_phrase = enigma.cypher("HELLOWORLD")
-    assert_equal "IPNNYTYENR", encyphered_phrase
+    assert_equal "IWLYOGBHFZ", encyphered_phrase
   end
 end
