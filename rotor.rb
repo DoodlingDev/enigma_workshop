@@ -8,6 +8,10 @@ class Rotor
     step_adjusted_key.at(index)
   end
 
+  def etalsnart(index)
+    step_adjusted_key.index(index)
+  end
+
   def advance!
     @position += 1
     if @position >= @key.length
